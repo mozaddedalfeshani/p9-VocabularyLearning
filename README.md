@@ -1,5 +1,5 @@
 # Project Structure
-
+```
 lingo-bingo/
 ├── public/                # Public assets (static files)
 │   ├── images/            # Public images like banners, logos
@@ -47,3 +47,4 @@ lingo-bingo/
 ├── package.json           # Project metadata and dependencies
 ├── README.md              # Project documentation
 └── vite.config.js         # Vite configuration
+```
