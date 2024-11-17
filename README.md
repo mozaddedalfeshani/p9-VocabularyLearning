@@ -1,4 +1,4 @@
-# **Lingo Bingo** - A 72 hour full stack project by Me, [Murad](facebook.com/imurad.12)
+# **Lingo Bingo** - A 72 hour full stack project by Me
 
 ### A Vocabulary Learning Application
 
