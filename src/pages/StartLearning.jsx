@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import "animate.css"; // Import Animate.css
-import vocabularies from "../data/vocabularies.json"; // Import JSON data
+import learnwithvocabularies from "../data/learnwithvocabularies.json"; // Correct import statement
 import Marquee from "react-fast-marquee";
 import VocabularyCard from "../components/VocabularyCard";
+import { AuthContext } from "../contexts/AuthProvider";
+import { Link } from "react-router-dom";
 
 export default function StartLearning() {
+  const { user, logIn } = useContext(AuthContext);
+
+  console.log("from start learning", logIn);
   return (
     <div className="mx-auto mt-10 px-4">
       {/* Marquee Component with Custom Settings */}
@@ -33,11 +38,42 @@ export default function StartLearning() {
         </p>
       </div>
 
-      {/* Vocabulary Cards */}
+      {/* Static Lesson Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
-        {vocabularies.map((vocab) => (
-          <VocabularyCard key={vocab.id} vocab={vocab} />
+        {learnwithvocabularies.lessons.map((lesson) => (
+          <Link key={lesson.lesson_no} to={`/lesson/${lesson.lesson_no}`}>
+            <div className="card bg-blue-200 w-full aspect-w-9 aspect-h-16 shadow-xl text-center p-6">
+              <h2 className="text-2xl font-bold">Lesson {lesson.lesson_no}</h2>
+              <p className="text-lg text-gray-700 mt-2">
+                {lesson.lesson_title}
+              </p>
+            </div>
+          </Link>
         ))}
+      </div>
+
+      {/* Tutorial section */}
+      <div className="mt-10">
+        <h2 className="text-3xl font-bold text-gray-900 text-center">
+          Learn the Alphabet
+        </h2>
+        <div className="flex justify-center mt-6">
+          <iframe
+            width="800"
+            height="450"
+            src="https://www.youtube.com/embed/drlIUqRYM-w"
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen></iframe>
+        </div>
+        <div className="text-center mt-6">
+          <Link to="/tutorials">
+            <button className="bg-blue-500 text-white px-4 py-2 rounded">
+              View more
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
   );

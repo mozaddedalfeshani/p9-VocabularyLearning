@@ -1,29 +1,23 @@
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState } from "react";
+export const AuthContext = createContext();
 
-// Create the AuthContext
-const AuthContext = createContext();
+const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState({ name: "Murad", email: "Murad@gmail.com" });
 
-// Custom hook to use the AuthContext
-export const useAuth = () => {
-  return useContext(AuthContext);
+  // start creating functions 
+  const logIn = (email, password) => {
+    setUser({
+      name: "Murad", email: "murad@ma.com"
+    });
+  }; // <-- Close the logIn function properly
+
+  const authInfo = {
+    user,
+    logIn
+  };
+  return (
+    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
+  );
 };
 
-export default function AuthProvider({ children }) {
-  const [auth, setAuth] = useState(null);
-
-  const login = (user) => {
-    setAuth(user);
-  };
-
-  const logout = () => {
-    setAuth(null);
-  };
-
-  const value = {
-    auth,
-    login,
-    logout,
-  };
-
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
-}
+export default AuthProvider;

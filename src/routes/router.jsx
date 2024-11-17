@@ -5,6 +5,8 @@ import Tutorials from "../pages/Tutorials";
 import AboutUs from "../pages/AboutUs";
 import Root from "../layout/root";
 import Login from "../pages/Login";
+import VocabularyDetails from "../components/VocabularyDetails";
+import Lesson from "../pages/Lesson";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +32,14 @@ const router = createBrowserRouter([
       {
         path: "/about-us",
         element: <AboutUs />,
+      },
+      {
+        path: "/vocabularies/:id", // Dynamic route for vocabulary details
+        element: <VocabularyDetails />,
+      },
+      {
+        path: "/lesson/:id", // Dynamic route for vocabulary details
+        element: <Lesson />,
       },
     ],
   },

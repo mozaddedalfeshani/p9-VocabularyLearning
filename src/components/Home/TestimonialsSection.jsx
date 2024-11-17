@@ -35,7 +35,9 @@ function TestimonialsSection() {
 
         <div className="grid md:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
-            <div key={index} className="p-6 bg-white shadow-lg rounded-lg animate__animated animate__zoomIn">
+            <div
+              key={index}
+              className="p-6 bg-white shadow-lg rounded-lg animate__animated animate__zoomIn ">
               <p className="text-lg text-gray-700 italic">
                 "{testimonial.quote}"
               </p>

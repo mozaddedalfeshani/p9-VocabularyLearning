@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
+import { AuthContext } from "../contexts/AuthProvider";
 
 export default function Login() {
   const [login, setLogin] = useState(false);
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const authContext = useContext(AuthContext);
+  console.log(authContext.name); // Now it will log "AuthContext"
 
   const clickToLogin = () => {
     setLogin(true);
@@ -68,7 +71,7 @@ export default function Login() {
                 />
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary">Login</button>
+                <button className="btn btn-primary">Signup</button>
               </div>
             </form>
           </div>
@@ -79,7 +82,6 @@ export default function Login() {
       {login && (
         <div className="login-area flex items-center justify-center py-10">
           {/* Login form goes here */}
-
           <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
             <form className="card-body">
               <div className="form-control">
