@@ -1,7 +1,17 @@
-export default function App() {
+import React from "react";
+
+const App = () => {
+  // Create a function to play the sound
+  
+
   return (
-    <h1 className="text-3xl font-bold underline text-center bg-white">
-      Hello world!
-    </h1>
+    <div className="App">
+      <h1>Welcome to the Learning App</h1>
+      <button onClick={playClickSound} className="btn btn-primary">
+        Start Learning
+      </button>
+    </div>
   );
-}
+};
+
+export default App;
