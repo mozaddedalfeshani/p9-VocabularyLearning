@@ -52,7 +52,7 @@ export default function NavBar() {
         <ul className="menu menu-horizontal px-1">{items}</ul>
       </div>
       <div className="navbar-end">
-        <Link className="btn">
+        <Link to="/login" className="btn">
           <img src={userLogout} className="w-10 h-10" />{" "}
         </Link>
       </div>
