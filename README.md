@@ -1,4 +1,47 @@
-# Project Structure
+# **Lingo Bingo**
+
+### A Vocabulary Learning Application
+
+Lingo Bingo is a fun and interactive single-page application designed to help users expand their vocabulary and improve communication skills in multiple languages. This project focuses on making language learning engaging and accessible with features like categorized lessons, embedded tutorials, and a personalized experience.
+
+---
+
+## **Live Demo**
+
+comming soon
+
+---
+
+## **Project Features**
+
+- **Firebase Authentication**:  
+  Users can log in, register, or use Google Sign-In to access private routes.
+
+- **Dynamic Vocabulary Lessons**:  
+  Learn new words through categorized lessons, each with unique vocabulary cards.
+
+- **Speak Up Feature**:  
+  Pronounce the vocabulary words for auditory learning.
+
+- **JSON-Driven Content**:  
+  Over 200+ vocabulary words structured by difficulty and lessons.
+
+- **Responsive Design**:  
+  A fully responsive design optimized for mobile, tablet, and desktop devices.
+
+- **Winter-Themed UI**:  
+  A unique, seasonal design to keep users engaged.
+
+- **Interactive Success Counters**:  
+  Animated counters for user, vocabulary, and lesson statistics.
+
+- **Private Routes**:  
+  Secure access to user profile, lessons, and tutorial pages after login.
+
+---
+
+## **Project Structure**
+
 ```
 lingo-bingo/
 ├── public/                # Public assets (static files)
