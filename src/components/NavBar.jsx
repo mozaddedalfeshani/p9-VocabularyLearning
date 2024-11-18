@@ -59,7 +59,8 @@ export default function NavBar() {
           <LogoutWithImage />
         ) : (
           <Link to="/login" className="btn">
-            <img src={userLogout} className="w-10 h-10" />
+            <p>Login</p>
+            <img src={userLogout} className="w-5 h-5" />
           </Link>
         )}
       </div>

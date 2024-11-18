@@ -8,7 +8,7 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import app from "../hooks/Firebase.Config";
-import { GoogleAuthProvider } from "firebase/auth";
+import { GoogleAuthProvider, signOut } from "firebase/auth";
 
 const AuthProvider = ({ children }) => {
   const provider = new GoogleAuthProvider();
@@ -26,7 +26,7 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   const googleLogin = () => {
-    signInWithPopup(getAuth(app), provider).then((result) => { 
+    signInWithPopup(getAuth(app), provider).then((result) => {
       setUser(result.user);
       setLoading(false);
     });
@@ -42,6 +42,15 @@ const AuthProvider = ({ children }) => {
         updateUserProfile(displayName, photoURL);
       }
     );
+  };
+  const signOutUser = () => {
+    signOut(getAuth(app))
+      .then(() => {
+        setUser(null);
+      })
+      .catch((error) => {
+        console.error("Error signing out", error);
+      });
   };
 
   const updateUserProfile = (displayName, photoURL) => {
@@ -66,6 +75,7 @@ const AuthProvider = ({ children }) => {
     updateUserProfile,
     googleLogin, // Added googleLogin to authInfo
     loading,
+    signOutUser,
   };
 
   return (
