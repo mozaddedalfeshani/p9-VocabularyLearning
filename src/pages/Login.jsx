@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { useState } from "react";
 import { AuthContext } from "../contexts/AuthProvider";
+import { Link } from "react-router-dom";
 
 export default function Login() {
   const [login, setLogin] = useState(false);
@@ -11,7 +12,7 @@ export default function Login() {
   const [signupName, setSignupName] = useState("");
   const [signupPhotoUrl, setSignupPhotoUrl] = useState("");
   const authContext = useContext(AuthContext);
-  const { googleLogin } = useContext(AuthContext);
+  const { googleLogin, signInUser } = useContext(AuthContext);
 
   const clickToLogin = () => {
     setLogin(true);
@@ -21,7 +22,6 @@ export default function Login() {
     setLogin(false);
   };
   const handleGoogleLogin = () => {
-    console.log("Google login");
     googleLogin();
   };
 
@@ -65,27 +65,26 @@ export default function Login() {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (!passwordError) {
-      authContext.signIn(e.target.email.value, e.target.password.value);
-    }
+    // console.log("Login", e.target.email.value, e.target.password.value);
+    // signInUser(e.target.email.value, e.target.password.value);
+    signInUser(e.target.email.value, e.target.password.value);
   };
 
   return (
     <div className="mx-auto">
-      <div className="container mx-auto ">
+      {/* <div className="container mx-auto ">
         <div className="flex flex-row justify-center  items-center gap-6">
-          <button className="btn rounded-3xl px-7" onClick={clickToSignup}>
+          <button className="btn rounded-3xl " onClick={clickToSignup}>
             Signup
           </button>
           <button className="btn rounded-3xl px-7" onClick={clickToLogin}>
             Login
           </button>
         </div>
-      </div>
+      </div> */}
       {/* This will sign up area */}
       {!login && (
         <div className="signup-area flex items-center justify-center my-11">
-          {/* Signup form goes here */}
           <div className="card bg-base-100 w-full px-4 py-10 max-w-sm shrink-0 shadow-2xl">
             <h1 className="card-title text-center px-10">Signup</h1>
             <form className="card-body p-0" onSubmit={handleSignup}>
@@ -162,10 +161,15 @@ export default function Login() {
                 Sign up with Google
               </button>
             </div>
+            <p className="text-center py-2">
+              Already Have Account?{" "}
+              <button className="text-blue-400" onClick={() => setLogin(true)}>
+                Login
+              </button>
+            </p>
           </div>
         </div>
       )}
-      {/* this will be sign in area */}
       {login && (
         <div className="login-area flex items-center justify-center py-10">
           {/* Login form goes here */}
@@ -213,6 +217,22 @@ export default function Login() {
                   Login
                 </button>
               </div>
+              <p className="text-center">or</p>
+              <div className="form-control ">
+                <button
+                  className="btn btn-secondary"
+                  onClick={handleGoogleLogin}>
+                  Login with Google
+                </button>
+              </div>
+              <p className="text-center py-2">
+                Don't have an account?{" "}
+                <button
+                  className="text-blue-400"
+                  onClick={() => setLogin(false)}>
+                  Sign up
+                </button>
+              </p>
             </form>
           </div>
         </div>

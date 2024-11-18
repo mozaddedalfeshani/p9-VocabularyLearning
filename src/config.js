@@ -7,5 +7,4 @@ const config = {
   appId: import.meta.env.VITE_APP_ID,
 };
 
-console.log(config); // Debug: Check if variables are being loaded
 export default config;

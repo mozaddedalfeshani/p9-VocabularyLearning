@@ -6,9 +6,11 @@ import {
   updateProfile,
   onAuthStateChanged,
   signInWithPopup,
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signOut,
 } from "firebase/auth";
 import app from "../hooks/Firebase.Config";
-import { GoogleAuthProvider, signOut } from "firebase/auth";
 
 const AuthProvider = ({ children }) => {
   const provider = new GoogleAuthProvider();
@@ -33,16 +35,29 @@ const AuthProvider = ({ children }) => {
   };
 
   const createAccount = (email, password, displayName, photoURL) => {
-    console.log("createAccount", email, password);
     createUserWithEmailAndPassword(getAuth(app), email, password).then(
       (userCredential) => {
-        setUser(userCredential.user);
-        console.log(user);
-        console.log("Account created successfully", userCredential);
         updateUserProfile(displayName, photoURL);
       }
     );
   };
+
+  const signInUser = (email, password) => {
+    // console.log(email, password);
+    if (!email) {
+      return;
+    }
+    signInWithEmailAndPassword(getAuth(app), email, password)
+      .then((result) => {
+        setUser(result.user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.error("Error signing in", errorCode, errorMessage);
+      });
+  };
+
   const signOutUser = () => {
     signOut(getAuth(app))
       .then(() => {
@@ -61,7 +76,7 @@ const AuthProvider = ({ children }) => {
         photoURL,
       })
         .then(() => {
-          console.log("Profile updated successfully");
+          setUser({ ...auth.currentUser, displayName, photoURL });
         })
         .catch((error) => {
           console.error("Error updating profile", error);
@@ -76,6 +91,7 @@ const AuthProvider = ({ children }) => {
     googleLogin, // Added googleLogin to authInfo
     loading,
     signOutUser,
+    signInUser,
   };
 
   return (

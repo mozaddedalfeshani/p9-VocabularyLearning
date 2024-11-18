@@ -8,6 +8,7 @@ import Login from "../pages/Login";
 import VocabularyDetails from "../components/VocabularyDetails";
 import Lesson from "../pages/Lesson";
 import PrivateProvider from "./PrivateProvider";
+import MyProfile from "../pages/MyProfile";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,16 @@ const router = createBrowserRouter([
         element: (
           <PrivateProvider>
             <Lesson />
+          </PrivateProvider>
+        ),
+      },
+      {
+        path: "/myProfile",
+        element: (
+          <PrivateProvider>
+            <div>
+              <MyProfile />
+            </div>
           </PrivateProvider>
         ),
       },

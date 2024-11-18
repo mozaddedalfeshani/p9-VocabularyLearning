@@ -6,7 +6,7 @@ import LoadingUI from "../components/LoadingUI";
 
 export default function PrivateProvider({ children }) {
   const { user, loading } = useContext(AuthContext);
-  console.log("Runnig the PrivateProvider", user, loading);
+  // console.log("Runnig the PrivateProvider", user, loading);
 
   if (loading) {
     return <LoadingUI />;

@@ -5,14 +5,14 @@ export default function LogoutWithImage() {
   const { user, signOutUser } = useContext(AuthContext);
   const handleLogout = () => {
     signOutUser();
-    console.log("Logout");
+    // console.log("Logout");
   };
   return (
     <button
       className="flex flex-row items-center btn justify-center "
       onClick={handleLogout}>
       <img
-        src={user.photoURL ? user.photoURL : logoIcon}
+        src={user.photoURL}
         alt="User Avatar"
         className=" border w-10 h-10 rounded-full hidden md:flex"
       />

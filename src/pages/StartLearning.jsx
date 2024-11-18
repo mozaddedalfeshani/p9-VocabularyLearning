@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 export default function StartLearning() {
   const { user, logIn } = useContext(AuthContext);
 
-  console.log("from start learning", logIn);
+  // console.log("from start learning", logIn);
   return (
     <div className="mx-auto mt-10 px-4">
       {/* Marquee Component with Custom Settings */}
