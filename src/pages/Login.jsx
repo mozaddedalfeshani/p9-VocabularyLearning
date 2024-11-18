@@ -6,8 +6,11 @@ export default function Login() {
   const [login, setLogin] = useState(false);
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [signupPassword, setSignupPassword] = useState("");
+  const [signupPasswordError, setSignupPasswordError] = useState("");
+  const [signupName, setSignupName] = useState("");
+  const [signupPhotoUrl, setSignupPhotoUrl] = useState("");
   const authContext = useContext(AuthContext);
-  console.log(authContext.name); // Now it will log "AuthContext"
 
   const clickToLogin = () => {
     setLogin(true);
@@ -30,20 +33,42 @@ export default function Login() {
     }
   };
 
+  const handleSignupPasswordChange = (e) => {
+    const value = e.target.value;
+    setSignupPassword(value);
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+    if (!passwordRegex.test(value)) {
+      setSignupPasswordError(
+        "Password must be at least 6 characters long and include both lowercase and uppercase letters."
+      );
+    } else {
+      setSignupPasswordError("");
+    }
+  };
+
   const handleSignup = (e) => {
     e.preventDefault();
-    authContext.createAccount(e.target.email.value, e.target.password.value);
+    if (!signupPasswordError) {
+      authContext.createAccount(
+        e.target.email.value,
+        e.target.password.value,
+        signupName,
+        signupPhotoUrl
+      );
+    }
   };
 
   const handleLogin = (e) => {
     e.preventDefault();
-    authContext.signIn(e.target.email.value, e.target.password.value);
+    if (!passwordError) {
+      authContext.signIn(e.target.email.value, e.target.password.value);
+    }
   };
 
   return (
     <div className="mx-auto">
       <div className="container mx-auto ">
-        <div className="flex flex-row justify-center items-center gap-6">
+        <div className="flex flex-row justify-center  items-center gap-6">
           <button className="btn rounded-3xl px-7" onClick={clickToSignup}>
             Signup
           </button>
@@ -56,8 +81,36 @@ export default function Login() {
       {!login && (
         <div className="signup-area flex items-center justify-center my-11">
           {/* Signup form goes here */}
-          <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+          <div className="card bg-base-100 w-full items-center py-10 max-w-sm shrink-0 shadow-2xl">
+            <h1 className="card-title text-center">Signup</h1>
             <form className="card-body" onSubmit={handleSignup}>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Name</span>
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="name"
+                  className="input input-bordered"
+                  value={signupName}
+                  onChange={(e) => setSignupName(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Photo URL</span>
+                </label>
+                <input
+                  type="text"
+                  name="photoUrl"
+                  placeholder="photo URL"
+                  className="input input-bordered"
+                  value={signupPhotoUrl}
+                  onChange={(e) => setSignupPhotoUrl(e.target.value)}
+                />
+              </div>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
@@ -79,11 +132,21 @@ export default function Login() {
                   name="password"
                   placeholder="password"
                   className="input input-bordered"
+                  value={signupPassword}
+                  onChange={handleSignupPasswordChange}
                   required
                 />
+                {signupPasswordError && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {signupPasswordError}
+                  </p>
+                )}
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary" type="submit">
+                <button
+                  className="btn btn-primary"
+                  type="submit"
+                  disabled={!!signupPasswordError}>
                   Signup
                 </button>
               </div>
@@ -133,7 +196,10 @@ export default function Login() {
                 </label>
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary" type="submit">
+                <button
+                  className="btn btn-primary"
+                  type="submit"
+                  disabled={!!passwordError}>
                   Login
                 </button>
               </div>
