@@ -1,6 +1,10 @@
 import React, { createContext, useState } from "react";
 export const AuthContext = createContext();
-import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
 import app from "../hooks/Firebase.Config";
 
 const AuthProvider = ({ children }) => {
@@ -35,6 +39,7 @@ const AuthProvider = ({ children }) => {
   };
 
   const authInfo = {
+    user,
     createAccount,
     updateUserProfile,
   };

@@ -7,6 +7,7 @@ import Root from "../layout/root";
 import Login from "../pages/Login";
 import VocabularyDetails from "../components/VocabularyDetails";
 import Lesson from "../pages/Lesson";
+import PrivateProvider from "./PrivateProvider";
 
 const router = createBrowserRouter([
   {
@@ -39,7 +40,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/lesson/:id", // Dynamic route for vocabulary details
-        element: <Lesson />,
+        element: (
+          <PrivateProvider>
+            <Lesson />
+          </PrivateProvider>
+        ),
       },
     ],
   },
