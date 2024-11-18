@@ -30,6 +30,16 @@ export default function Login() {
     }
   };
 
+  const handleSignup = (e) => {
+    e.preventDefault();
+    authContext.createAccount(e.target.email.value, e.target.password.value);
+  };
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    authContext.signIn(e.target.email.value, e.target.password.value);
+  };
+
   return (
     <div className="mx-auto">
       <div className="container mx-auto ">
@@ -47,13 +57,14 @@ export default function Login() {
         <div className="signup-area flex items-center justify-center my-11">
           {/* Signup form goes here */}
           <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-            <form className="card-body">
+            <form className="card-body" onSubmit={handleSignup}>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
                 </label>
                 <input
                   type="email"
+                  name="email"
                   placeholder="email"
                   className="input input-bordered"
                   required
@@ -65,13 +76,16 @@ export default function Login() {
                 </label>
                 <input
                   type="password"
+                  name="password"
                   placeholder="password"
                   className="input input-bordered"
                   required
                 />
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary">Signup</button>
+                <button className="btn btn-primary" type="submit">
+                  Signup
+                </button>
               </div>
             </form>
           </div>
@@ -83,13 +97,14 @@ export default function Login() {
         <div className="login-area flex items-center justify-center py-10">
           {/* Login form goes here */}
           <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-            <form className="card-body">
+            <form className="card-body" onSubmit={handleLogin}>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
                 </label>
                 <input
                   type="email"
+                  name="email"
                   placeholder="email"
                   className="input input-bordered"
                   required
@@ -101,6 +116,7 @@ export default function Login() {
                 </label>
                 <input
                   type="password"
+                  name="password"
                   placeholder="password"
                   className="input input-bordered"
                   value={password}
@@ -117,7 +133,9 @@ export default function Login() {
                 </label>
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary">Login</button>
+                <button className="btn btn-primary" type="submit">
+                  Login
+                </button>
               </div>
             </form>
           </div>
