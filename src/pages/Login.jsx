@@ -11,6 +11,7 @@ export default function Login() {
   const [signupName, setSignupName] = useState("");
   const [signupPhotoUrl, setSignupPhotoUrl] = useState("");
   const authContext = useContext(AuthContext);
+  const { googleLogin } = useContext(AuthContext);
 
   const clickToLogin = () => {
     setLogin(true);
@@ -18,6 +19,10 @@ export default function Login() {
 
   const clickToSignup = () => {
     setLogin(false);
+  };
+  const handleGoogleLogin = () => {
+    console.log("Google login");
+    googleLogin();
   };
 
   const handlePasswordChange = (e) => {
@@ -81,9 +86,9 @@ export default function Login() {
       {!login && (
         <div className="signup-area flex items-center justify-center my-11">
           {/* Signup form goes here */}
-          <div className="card bg-base-100 w-full items-center py-10 max-w-sm shrink-0 shadow-2xl">
-            <h1 className="card-title text-center">Signup</h1>
-            <form className="card-body" onSubmit={handleSignup}>
+          <div className="card bg-base-100 w-full px-4 py-10 max-w-sm shrink-0 shadow-2xl">
+            <h1 className="card-title text-center px-10">Signup</h1>
+            <form className="card-body p-0" onSubmit={handleSignup}>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Name</span>
@@ -150,9 +155,14 @@ export default function Login() {
                   Signup
                 </button>
               </div>
+              <p className="text-center">or</p>
             </form>
+            <div className="form-control ">
+              <button className="btn btn-secondary" onClick={handleGoogleLogin}>
+                Sign up with Google
+              </button>
+            </div>
           </div>
-          {/* Add your signup form fields here */}
         </div>
       )}
       {/* this will be sign in area */}
