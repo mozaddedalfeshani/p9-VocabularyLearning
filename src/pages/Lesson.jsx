@@ -13,7 +13,9 @@ export default function Lesson() {
           "https://raw.githubusercontent.com/mozaddedalfeshani/bslphotos/refs/heads/main/learnwithvocabularies.json"
         );
         const data = await response.json();
-        const lesson = data.lessons.find((lesson) => lesson.lesson_no === parseInt(id));
+        const lesson = data.lessons.find(
+          (lesson) => lesson.lesson_no === parseInt(id)
+        );
         if (lesson) {
           setLessonData(lesson);
         } else {
@@ -37,8 +39,13 @@ export default function Lesson() {
 
   return (
     <div>
-      <h1>{lessonData.lesson_title}</h1>
-      <p>{lessonData.lesson_description}</p>
+      <h1 className="text-center font-bold text-xl">
+        {lessonData.lesson_title}
+      </h1>
+      <p className="text-center font-bold text-xxl">
+        {lessonData.lesson_description}
+      </p>
+
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
         {lessonData.vocabularies.map((vocab) => (
           <VocabularyCard key={vocab.id} vocab={vocab} />
