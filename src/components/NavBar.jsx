@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logoIcon from "../assets/icons/logoIcon.png";
 import userLogout from "../assets/icons/userLogout.png";
+import { AuthContext } from "../contexts/AuthProvider";
+import LogoutWithImage from "./Buttons/LogoutWithImage";
 
 export default function NavBar() {
+  const { user } = useContext(AuthContext);
   const items = [
     <li key="home">
       <NavLink to="/">Home</NavLink>
@@ -52,9 +55,13 @@ export default function NavBar() {
         <ul className="menu menu-horizontal px-1">{items}</ul>
       </div>
       <div className="navbar-end">
-        <Link to="/login" className="btn">
-          <img src={userLogout} className="w-10 h-10" />{" "}
-        </Link>
+        {user ? (
+          <LogoutWithImage />
+        ) : (
+          <Link to="/login" className="btn">
+            <img src={userLogout} className="w-10 h-10" />
+          </Link>
+        )}
       </div>
     </div>
   );
