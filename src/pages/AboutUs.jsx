@@ -1,11 +1,12 @@
 import React from "react";
+import "animate.css"; // Import animate.css
 import myPhoto from "../assets/images/myPhoto.jpg";
 
 const SelfIntroductionCard = () => {
   return (
-    <div className="flex flex-col md:flex-row items-center max-w-6xl mx-auto shadow-lg  bg-[#ffffffc0] rounded-xl p-6 space-y-6 md:space-y-0 md:space-x-6 mt-10 ">
+    <div className="flex flex-col md:flex-row items-center max-w-6xl mx-auto shadow-lg bg-[#ffffffc0] rounded-xl p-6 space-y-6 md:space-y-0 md:space-x-6 mt-10 animate__animated animate__fadeIn overflow-hidden">
       {/* Left side: Profile Image */}
-      <div className="md:w-1/3 flex justify-center">
+      <div className="md:w-1/3 flex justify-center animate__animated animate__zoomIn">
         <img
           src={myPhoto} // Replace with your image URL
           alt="Murad's Profile"
@@ -14,7 +15,7 @@ const SelfIntroductionCard = () => {
       </div>
 
       {/* Right side: Info */}
-      <div className="md:w-2/3 text-left space-y-4">
+      <div className="md:w-2/3 text-left space-y-4 animate__animated animate__fadeInRight">
         {/* Name and Title */}
         <h2 className="text-2xl md:text-3xl font-bold text-gray-800">
           Mozadded Alfeshani Murad
