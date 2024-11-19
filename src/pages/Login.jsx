@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { useState } from "react";
 import { AuthContext } from "../contexts/AuthProvider";
 import { Link } from "react-router-dom";
+import signinIcon from "../assets/icons/signinIcon.png";
 
 export default function Login() {
   const [login, setLogin] = useState(false);
@@ -72,18 +73,6 @@ export default function Login() {
 
   return (
     <div className="mx-auto">
-      {/* <div className="container mx-auto ">
-        <div className="flex flex-row justify-center  items-center gap-6">
-          <button className="btn rounded-3xl " onClick={clickToSignup}>
-            Signup
-          </button>
-          <button className="btn rounded-3xl px-7" onClick={clickToLogin}>
-            Login
-          </button>
-        </div>
-      </div> */}
-      {/* This will sign up area */}
-
       {!login && (
         <div className="signup-area flex items-center justify-center my-11">
           <div className="card bg-base-100 w-full px-4 py-10 max-w-sm shrink-0 shadow-2xl">
@@ -178,6 +167,7 @@ export default function Login() {
           {/* Login form goes here */}
           <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
             <form className="card-body" onSubmit={handleLogin}>
+              <img src={signinIcon} />
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
