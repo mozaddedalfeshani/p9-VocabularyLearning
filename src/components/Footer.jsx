@@ -1,10 +1,11 @@
 import logoIcon from "../assets/icons/logoIcon.png";
 import React from "react";
+import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
 
 export default function Footer() {
   return (
     <div className="mt-10 bg-base-200">
-      <footer className="footer container mx-auto  text-base-content p-10">
+      <footer className="footer container mx-auto text-base-content p-10">
         <aside>
           <img src={logoIcon} alt="logo" className="w-10 h-10" />
           <p className="font-sans font-medium">
@@ -33,7 +34,29 @@ export default function Footer() {
           <a className="link link-hover">Privacy Policy</a>
           <a className="link link-hover">Cookie Policy</a>
         </nav>
+        <nav>
+          <h6 className="footer-title">Contact</h6>
+          <p>Email: contact@lingobingo.com</p>
+          <p>Phone: +123 456 7890</p>
+        </nav>
+        <nav>
+          <h6 className="footer-title">Follow Us</h6>
+          <div className="flex space-x-4">
+            <a href="https://facebook.com" className="link link-hover">
+              <FaFacebook />
+            </a>
+            <a href="https://twitter.com" className="link link-hover">
+              <FaTwitter />
+            </a>
+            <a href="https://instagram.com" className="link link-hover">
+              <FaInstagram />
+            </a>
+          </div>
+        </nav>
       </footer>
+      <div className="text-center py-4 bg-base-300">
+        <p>&copy; 2023 Lingo Bingo. All rights reserved.</p>
+      </div>
     </div>
   );
 }
