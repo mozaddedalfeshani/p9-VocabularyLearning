@@ -1,11 +1,15 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../contexts/AuthProvider";
+import { Link } from "react-router-dom";
 
 export default function MyProfile() {
-  const { user, signOutUser } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   return (
     <div className="container mx-auto mt-5 ">
+      <h1 className="text-3xl font-semibold text-gray-800 text-center">
+        Welcome , {user?.displayName || "User Name"}
+      </h1>
       <div className="card card-bordered">
         <div className="card-body d-flex flex-row flex justify-around items-center">
           <div className="left-side">
@@ -19,8 +23,8 @@ export default function MyProfile() {
           <div className="right-side ml-4 card gap-4 card-bordered p-6">
             <h3 className="card-title">{user?.displayName || "User Name"}</h3>
             <p>{user?.email || "user@example.com"}</p>
-            <button className="btn btn-danger" onClick={signOutUser}>
-              Logout
+            <button className="btn btn-danger">
+              <Link to="updateProfile">Update Profile</Link>
             </button>
           </div>
         </div>
