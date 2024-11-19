@@ -100,8 +100,19 @@ lingo-bingo/
 - **react-dom**: Serves as the entry point to the DOM and server renderers for React.
 - **react-router-dom**: DOM bindings for React Router.
 - **firebase**: Firebase JavaScript SDK.
+- **animate.css**: A library of ready-to-use, cross-browser animations for use in your web projects.
+- **aos**: Animate on scroll library.
+- **localforage**: Offline storage, improved.
+- **match-sorter**: Simple, expected, and deterministic best-match sorting of an array in JavaScript.
+- **react-countup**: A React component wrapper around CountUp.js.
+- **react-fast-marquee**: Lightweight React component for creating scrolling text.
+- **react-icons**: Include popular icons in your React projects easily.
+- **sort-by**: A utility to sort an array of objects by property.
+- **swiper**: Modern mobile touch slider.
 - **axios**: Promise based HTTP client for the browser and node.js.
 - **sass**: CSS preprocessor.
 - **vite**: Next generation frontend tooling.
 - **eslint**: Pluggable JavaScript linter.
 - **prettier**: Code formatter.
+- **daisyui**: Tailwind CSS Components.
+- **tailwindcss**: A utility-first CSS framework.
