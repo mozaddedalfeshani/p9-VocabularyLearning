@@ -20,6 +20,11 @@ export default function NavBar() {
     <li key="about-us">
       <NavLink to="/about-us">About Us</NavLink>
     </li>,
+    user ? (
+      <li key="profile">
+        <NavLink to="/profile">Profile</NavLink>
+      </li>
+    ) : null
   ];
   return (
     <div className="navbar bg-base-100">

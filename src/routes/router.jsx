@@ -9,6 +9,7 @@ import VocabularyDetails from "../components/VocabularyDetails";
 import Lesson from "../pages/Lesson";
 import PrivateProvider from "./PrivateProvider";
 import MyProfile from "../pages/MyProfile";
+import WrongPage from "../pages/WrongPage"; // Add this import
 
 const router = createBrowserRouter([
   {
@@ -48,7 +49,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/myProfile",
+        path: "/profile",
         element: (
           <PrivateProvider>
             <div>
@@ -57,7 +58,15 @@ const router = createBrowserRouter([
           </PrivateProvider>
         ),
       },
+      {
+        path: "*", // Catch-all route for 404 page
+        element: <WrongPage />,
+      },
     ],
+  },
+  {
+    path: "*", // Catch-all route for 404 page
+    element: <WrongPage />,
   },
 ]);
 

@@ -83,10 +83,13 @@ export default function Login() {
         </div>
       </div> */}
       {/* This will sign up area */}
+
       {!login && (
         <div className="signup-area flex items-center justify-center my-11">
           <div className="card bg-base-100 w-full px-4 py-10 max-w-sm shrink-0 shadow-2xl">
-            <h1 className="card-title text-center px-10">Signup</h1>
+            {/* <iframe src="https://lottie.host/embed/4df15ff0-24bb-4133-a7c5-9442e73e52d2/zBwiPCNWfr.json"></iframe>
+             */}
+            <iframe src="https://lottie.host/embed/7ef54e79-d507-4742-bc3e-f74354262fa3/AE2csfvfUB.json"></iframe>
             <form className="card-body p-0" onSubmit={handleSignup}>
               <div className="form-control">
                 <label className="label">
