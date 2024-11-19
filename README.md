@@ -91,3 +91,17 @@ lingo-bingo/
 ├── README.md              # Project documentation
 └── vite.config.js         # Vite configuration
 ```
+
+---
+
+## **NPM Packages Used**
+
+- **react**: A JavaScript library for building user interfaces.
+- **react-dom**: Serves as the entry point to the DOM and server renderers for React.
+- **react-router-dom**: DOM bindings for React Router.
+- **firebase**: Firebase JavaScript SDK.
+- **axios**: Promise based HTTP client for the browser and node.js.
+- **sass**: CSS preprocessor.
+- **vite**: Next generation frontend tooling.
+- **eslint**: Pluggable JavaScript linter.
+- **prettier**: Code formatter.
