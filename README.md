@@ -8,7 +8,7 @@ Lingo Bingo is a fun and interactive single-page application designed to help us
 
 ## **Live Demo**
 
-comming soon
+[Live Demo](https://vocabularyproject-b7fb9.web.app/)
 
 ---
 
