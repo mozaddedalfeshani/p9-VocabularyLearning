@@ -85,7 +85,7 @@ export default function StartLearning() {
         </h2>
         <div className="flex justify-center mt-6">
           <iframe
-            width="800"
+            className="w-full sm:w-3/4 lg:w-1/2"
             height="450"
             src="https://www.youtube.com/embed/drlIUqRYM-w"
             title="YouTube video player"
