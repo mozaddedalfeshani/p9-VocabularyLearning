@@ -1,12 +1,28 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "animate.css"; // Import Animate.css
-import learnwithvocabularies from "../data/learnwithvocabularies.json"; // Correct import statement
 import Marquee from "react-fast-marquee";
-import VocabularyCard from "../components/VocabularyCard";
 import { AuthContext } from "../contexts/AuthProvider";
 import { Link } from "react-router-dom";
 
 export default function StartLearning() {
+  //fetch data from web like lesson page
+  const [dataVoc, setdataVoc] = useState(null);
+  useEffect(() => {
+    const fetchVocabulary = async () => {
+      try {
+        const response = await fetch(
+          "https://raw.githubusercontent.com/mozaddedalfeshani/bslphotos/refs/heads/main/learnwithvocabularies.json"
+        );
+        const data = await response.json();
+        setdataVoc(data);
+      } catch (error) {
+        setdataVoc("Failed to fetch lesson data");
+      }
+    };
+
+    fetchVocabulary();
+  }, []);
+
   const { user, logIn } = useContext(AuthContext);
 
   // console.log("from start learning", logIn);
@@ -26,7 +42,6 @@ export default function StartLearning() {
           this exciting learning journey together!
         </span>
       </Marquee>
-
       {/* Main Section with Animated Heading */}
       <div className="text-center mt-10">
         <h1 className="animate__animated animate__fadeIn animate__delay-1s text-4xl font-bold text-gray-900">
@@ -37,19 +52,30 @@ export default function StartLearning() {
           ease. Let's get started today!
         </p>
       </div>
-
       {/* Static Lesson Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
-        {learnwithvocabularies.lessons.map((lesson) => (
-          <Link key={lesson.lesson_no} to={`/lesson/${lesson.lesson_no}`}>
-            <div className="card bg-blue-200 w-full aspect-w-9 aspect-h-16 shadow-xl text-center p-6">
-              <h2 className="text-2xl font-bold">Lesson {lesson.lesson_no}</h2>
-              <p className="text-lg text-gray-700 mt-2">
-                {lesson.lesson_title}
-              </p>
+        {dataVoc ? (
+          dataVoc.lessons.map((lesson) => (
+            <Link key={lesson.lesson_no} to={`/lesson/${lesson.lesson_no}`}>
+              <div className="card bg-blue-200 w-full aspect-w-9 aspect-h-16 shadow-xl text-center p-6">
+                <h2 className="text-2xl font-bold">
+                  Lesson {lesson.lesson_no}
+                </h2>
+                <p className="text-lg text-gray-700 mt-2">
+                  {lesson.lesson_title}
+                </p>
+              </div>
+            </Link>
+          ))
+        ) : (
+          <div className="flex justify-center items-center">
+            <div
+              className="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full"
+              role="status">
+              <span className="visually-hidden">Loading...</span>
             </div>
-          </Link>
-        ))}
+          </div>
+        )}
       </div>
 
       {/* Tutorial section */}
