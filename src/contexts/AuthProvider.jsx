@@ -12,6 +12,9 @@ import {
   sendPasswordResetEmail,
 } from "firebase/auth";
 import app from "../hooks/Firebase.Config";
+import toast from "react-hot-toast";
+
+const notify = (message) => toast(message);
 
 const AuthProvider = ({ children }) => {
   const provider = new GoogleAuthProvider();
@@ -32,6 +35,7 @@ const AuthProvider = ({ children }) => {
     signInWithPopup(getAuth(app), provider).then((result) => {
       setUser(result.user);
       setLoading(false);
+      notify("Successfully logged in with Google"); // Notify on successful Google login
     });
   };
 
@@ -39,23 +43,24 @@ const AuthProvider = ({ children }) => {
     createUserWithEmailAndPassword(getAuth(app), email, password).then(
       (userCredential) => {
         updateUserProfile(displayName, photoURL);
+        notify("Account created successfully"); // Notify on successful account creation
       }
     );
   };
 
   const signInUser = (email, password) => {
-    // console.log(email, password);
     if (!email) {
       return;
     }
     signInWithEmailAndPassword(getAuth(app), email, password)
       .then((result) => {
         setUser(result.user);
+        notify("Successfully logged in with email and password"); // Notify on successful email/password login
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.error("Error signing in", errorCode, errorMessage);
+        notify("Error signing in: " + errorMessage); // Notify on wrong credentials
       });
   };
 
@@ -65,7 +70,7 @@ const AuthProvider = ({ children }) => {
         setUser(null);
       })
       .catch((error) => {
-        console.error("Error signing out", error);
+        notify("Error signing out: " + error.message); // Notify on sign out error
       });
   };
 
@@ -80,7 +85,7 @@ const AuthProvider = ({ children }) => {
           setUser({ ...auth.currentUser, displayName, photoURL });
         })
         .catch((error) => {
-          console.error("Error updating profile", error);
+          notify("Error updating profile: " + error.message); // Notify on profile update error
         });
     }
   };
@@ -88,13 +93,12 @@ const AuthProvider = ({ children }) => {
   const resetPassword = (email) => {
     sendPasswordResetEmail(getAuth(app), email)
       .then(() => {
-        console.log("Password reset email sent");
+        notify("Password reset email sent successfully"); // Notify on successful password reset email sent
       })
       .catch((error) => {
-        console.error("Error sending password reset email", error);
+        notify("Error sending password reset email: " + error.message); // Notify on failed password reset
       });
   };
-  
 
   const authInfo = {
     user,
