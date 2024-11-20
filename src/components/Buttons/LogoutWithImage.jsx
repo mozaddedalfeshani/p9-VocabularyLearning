@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthProvider";
-import logoIcon from "../../assets/icons/logoIcon.png";
+
 export default function LogoutWithImage() {
   const { user, signOutUser } = useContext(AuthContext);
   const handleLogout = () => {
@@ -14,7 +14,7 @@ export default function LogoutWithImage() {
       <img
         src={user.photoURL}
         alt="User Avatar"
-        className=" border w-10 h-10 rounded-full hidden md:flex"
+        className=" border w-10 h-10 rounded-full flex"
       />
       <p className=" text-pretty text-[24px]">Logout</p>
     </button>

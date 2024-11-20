@@ -49,6 +49,16 @@ export default function NavBar() {
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1000] mt-3 w-52 p-2 shadow">
             {items}
+            <div className=" items-center justify-center flex flex-row">
+              {user ? (
+                <LogoutWithImage />
+              ) : (
+                <Link to="/login" className="btn btn-ghost">
+                  <p>Login</p>
+                  <img src={userLogout} className="w-5 h-5" />
+                </Link>
+              )}
+            </div>
           </ul>
         </div>
         <Link to="/" className="btn btn-ghost text-xl">
@@ -59,7 +69,7 @@ export default function NavBar() {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{items}</ul>
       </div>
-      <div className="navbar-end">
+      <div className="navbar-end hidden md:flex">
         {user ? (
           <LogoutWithImage />
         ) : (
