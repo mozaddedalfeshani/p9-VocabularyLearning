@@ -24,7 +24,7 @@ export default function NavBar() {
       <li key="profile">
         <NavLink to="/profile">Profile</NavLink>
       </li>
-    ) : null
+    ) : null,
   ];
   return (
     <div className="navbar bg-base-100">
@@ -51,10 +51,10 @@ export default function NavBar() {
             {items}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">
+        <Link to="/" className="btn btn-ghost text-xl">
           <img src={logoIcon} alt="Logo" className="w-10 h-10" />
           <p>Vocabulary Learning</p>
-        </a>
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{items}</ul>

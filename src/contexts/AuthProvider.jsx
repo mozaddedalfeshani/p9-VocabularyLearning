@@ -9,6 +9,7 @@ import {
   signInWithEmailAndPassword,
   GoogleAuthProvider,
   signOut,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import app from "../hooks/Firebase.Config";
 
@@ -84,6 +85,17 @@ const AuthProvider = ({ children }) => {
     }
   };
 
+  const resetPassword = (email) => {
+    sendPasswordResetEmail(getAuth(app), email)
+      .then(() => {
+        console.log("Password reset email sent");
+      })
+      .catch((error) => {
+        console.error("Error sending password reset email", error);
+      });
+  };
+  
+
   const authInfo = {
     user,
     createAccount,
@@ -92,6 +104,7 @@ const AuthProvider = ({ children }) => {
     loading,
     signOutUser,
     signInUser,
+    resetPassword,
   };
 
   return (

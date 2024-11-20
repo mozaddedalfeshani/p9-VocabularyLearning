@@ -11,6 +11,7 @@ import PrivateProvider from "./PrivateProvider";
 import MyProfile from "../pages/MyProfile";
 import WrongPage from "../pages/WrongPage"; // Add this import
 import UpdateProfile from "../pages/UpdateProfile"; // Fix import
+import PasswordReset from "../pages/PasswordReset";
 
 const router = createBrowserRouter([
   {
@@ -60,12 +61,16 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "updateProfile",
+        path: "/updateProfile",
         element: (
           <PrivateProvider>
             <UpdateProfile /> {/* Fix component usage */}
           </PrivateProvider>
         ),
+      },
+      {
+        path: "/resetPassword",
+        element: <PasswordReset />, // Ensure this route is correct
       },
       {
         path: "*", // Catch-all route for 404 page

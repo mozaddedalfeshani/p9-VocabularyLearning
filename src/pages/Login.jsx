@@ -197,9 +197,11 @@ export default function Login() {
                   <p className="text-red-500 text-xs mt-1">{passwordError}</p>
                 )}
                 <label className="label">
-                  <a href="#" className="label-text-alt link link-hover">
+                  <Link
+                    to="/resetPassword"
+                    className="label-text-alt link link-hover">
                     Forgot password?
-                  </a>
+                  </Link>
                 </label>
               </div>
               <div className="form-control mt-6">
