@@ -62,7 +62,7 @@ export default function VocabularyCard({ vocab }) {
       <button
         className="btn btn-ghost "
         onClick={() => document.getElementById("my_modal_1").showModal()}>
-        open modal
+        When to Say
       </button>
       <dialog id="my_modal_1" className={`modal `}>
         <div className={`modal-box bg-green-100`}>
