@@ -49,11 +49,11 @@ export default function NavBar() {
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1000] mt-3 w-52 p-2 shadow">
             {items}
-            <div className=" items-center justify-center flex flex-row">
+            <div className=" items-center justify-center flex flex-row my-6">
               {user ? (
                 <LogoutWithImage />
               ) : (
-                <Link to="/login" className="btn btn-ghost">
+                <Link to="/login" className="btn btn-outline ">
                   <p>Login</p>
                   <img src={userLogout} className="w-5 h-5" />
                 </Link>
