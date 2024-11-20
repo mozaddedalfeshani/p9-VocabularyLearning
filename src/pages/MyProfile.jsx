@@ -6,11 +6,11 @@ export default function MyProfile() {
   const { user } = useContext(AuthContext);
 
   return (
-    <div className="container mx-auto mt-5 ">
+    <div className="container mx-auto mt-5 card flex justify-center items-center">
       <h1 className="text-3xl font-semibold text-gray-800 text-center">
         Welcome , {user?.displayName || "User Name"}
       </h1>
-      <div className="card card-bordered">
+      <div className="">
         <div className="card-body d-flex flex-row flex justify-around items-center">
           <div className="left-side">
             <img
@@ -24,7 +24,7 @@ export default function MyProfile() {
             <h3 className="card-title">{user?.displayName || "User Name"}</h3>
             <p>{user?.email || "user@example.com"}</p>
             <button className="btn btn-danger">
-              <Link to="/profileEdit">Update Profile</Link>
+              <Link to="/updateProfile">Update Profile</Link>
             </button>
           </div>
         </div>

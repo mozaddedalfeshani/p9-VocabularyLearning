@@ -12,7 +12,7 @@ export default function VocabularyCard({ vocab }) {
       window.speechSynthesis.speak(utterance);
       console.log("Speaking:", word);
     } else {
-      console.error("Speech synthesis not supported");
+      // console.error("Speech synthesis not supported");
     }
   };
 

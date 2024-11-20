@@ -6,7 +6,7 @@ export default function Banner() {
   const playClickSound = () => {
     const audio = new Audio("../src/assets/sounds/click.mp3"); // Path to the click sound file in the public directory
     audio.play().catch((error) => {
-      console.error("Error playing sound:", error);
+      // console.error("Error playing sound:", error);
     });
   };
   return (
