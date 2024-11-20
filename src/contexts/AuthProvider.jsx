@@ -14,35 +14,36 @@ import {
 import app from "../hooks/Firebase.Config";
 import toast from "react-hot-toast";
 
-const notify = (message) => toast(message);
+const notify = (message) => toast(message); // Function to show toast notifications
 
 const AuthProvider = ({ children }) => {
   const provider = new GoogleAuthProvider();
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null); // State to store the authenticated user
+  const [loading, setLoading] = useState(true); // State to store the loading status
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(getAuth(app), (user) => {
-      setUser(user);
-      setLoading(false);
+      setUser(user); // Set the user state when authentication state changes
+      setLoading(false); // Set loading to false when authentication state is determined
     });
     return () => {
-      unsubscribe();
+      unsubscribe(); // Cleanup the subscription on component unmount
     };
   }, []);
 
   const googleLogin = () => {
-    signInWithPopup(getAuth(app), provider).then((result) => {
-      setUser(result.user);
-      setLoading(false);
+    return signInWithPopup(getAuth(app), provider).then((result) => {
+      setUser(result.user); // Set the user state with the authenticated user
+      setLoading(false); // Set loading to false
       notify("Successfully logged in with Google"); // Notify on successful Google login
+      return result.user;
     });
   };
 
   const createAccount = (email, password, displayName, photoURL) => {
     createUserWithEmailAndPassword(getAuth(app), email, password).then(
       (userCredential) => {
-        updateUserProfile(displayName, photoURL);
+        updateUserProfile(displayName, photoURL); // Update user profile with display name and photo URL
         notify("Account created successfully"); // Notify on successful account creation
       }
     );
@@ -54,11 +55,10 @@ const AuthProvider = ({ children }) => {
     }
     signInWithEmailAndPassword(getAuth(app), email, password)
       .then((result) => {
-        setUser(result.user);
+        setUser(result.user); // Set the user state with the authenticated user
         notify("Successfully logged in with email and password"); // Notify on successful email/password login
       })
       .catch((error) => {
-        const errorCode = error.code;
         const errorMessage = error.message;
         notify("Error signing in: " + errorMessage); // Notify on wrong credentials
       });
@@ -67,7 +67,7 @@ const AuthProvider = ({ children }) => {
   const signOutUser = () => {
     signOut(getAuth(app))
       .then(() => {
-        setUser(null);
+        setUser(null); // Clear the user state on sign out
       })
       .catch((error) => {
         notify("Error signing out: " + error.message); // Notify on sign out error
@@ -82,7 +82,7 @@ const AuthProvider = ({ children }) => {
         photoURL,
       })
         .then(() => {
-          setUser({ ...auth.currentUser, displayName, photoURL });
+          setUser({ ...auth.currentUser, displayName, photoURL }); // Update the user state with the new profile information
         })
         .catch((error) => {
           notify("Error updating profile: " + error.message); // Notify on profile update error
@@ -102,9 +102,10 @@ const AuthProvider = ({ children }) => {
 
   const authInfo = {
     user,
+    setUser,
     createAccount,
     updateUserProfile,
-    googleLogin, // Added googleLogin to authInfo
+    googleLogin,
     loading,
     signOutUser,
     signInUser,

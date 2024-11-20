@@ -1,29 +1,36 @@
 import React, { useContext } from "react";
 import { useState } from "react";
 import { AuthContext } from "../contexts/AuthProvider";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import signinIcon from "../assets/icons/signinIcon.png";
 
 export default function Login() {
-  const [login, setLogin] = useState(false);
+  const [login, setLogin] = useState(false); // State to toggle between login and signup
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [signupPassword, setSignupPassword] = useState("");
   const [signupPasswordError, setSignupPasswordError] = useState("");
   const [signupName, setSignupName] = useState("");
   const [signupPhotoUrl, setSignupPhotoUrl] = useState("");
-  const authContext = useContext(AuthContext);
+  const authContext = useContext(AuthContext); // Get authentication context
   const { googleLogin, signInUser } = useContext(AuthContext);
+  const location = useLocation(); // Get the current location
+  const navigate = useNavigate(); // Get the navigate function
+
+  console.log(location);
 
   const clickToLogin = () => {
     setLogin(true);
+    navigate(location?.state?.from?.pathname || "/"); // Navigate to the previous page or home page
   };
 
   const clickToSignup = () => {
     setLogin(false);
   };
-  const handleGoogleLogin = () => {
-    googleLogin();
+
+  const handleGoogleLogin = async () => {
+    await googleLogin(); // Wait for Google login to complete
+    navigate(location?.state?.from?.pathname || "/"); // Navigate to the previous page or home page
   };
 
   const handlePasswordChange = (e) => {
@@ -61,14 +68,14 @@ export default function Login() {
         signupName,
         signupPhotoUrl
       );
+      navigate(location?.state?.from?.pathname || "/"); // Navigate to the previous page or home page
     }
   };
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // console.log("Login", e.target.email.value, e.target.password.value);
-    // signInUser(e.target.email.value, e.target.password.value);
     signInUser(e.target.email.value, e.target.password.value);
+    navigate(location?.state?.from?.pathname || "/"); // Navigate to the previous page or home page
   };
 
   return (
@@ -76,8 +83,6 @@ export default function Login() {
       {!login && (
         <div className="signup-area flex items-center justify-center my-11">
           <div className="card bg-base-100 w-full px-4 py-10 max-w-sm shrink-0 shadow-2xl">
-            {/* <iframe src="https://lottie.host/embed/4df15ff0-24bb-4133-a7c5-9442e73e52d2/zBwiPCNWfr.json"></iframe>
-             */}
             <iframe src="https://lottie.host/embed/7ef54e79-d507-4742-bc3e-f74354262fa3/AE2csfvfUB.json"></iframe>
             <form className="card-body p-0" onSubmit={handleSignup}>
               <div className="form-control">
@@ -164,7 +169,6 @@ export default function Login() {
       )}
       {login && (
         <div className="login-area flex items-center justify-center py-10">
-          {/* Login form goes here */}
           <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
             <form className="card-body" onSubmit={handleLogin}>
               <img src={signinIcon} />
