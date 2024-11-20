@@ -6,7 +6,7 @@ import signinIcon from "../assets/icons/signinIcon.png";
 import toast from "react-hot-toast";
 
 export default function Login() {
-  const [login, setLogin] = useState(false); // State to toggle between login and signup
+  const [login, setLogin] = useState(true); // State to toggle between login and signup
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [signupPassword, setSignupPassword] = useState("");

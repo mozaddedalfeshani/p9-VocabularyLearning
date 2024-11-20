@@ -87,7 +87,7 @@ export default function StartLearning() {
           <iframe
             className="w-full sm:w-3/4 lg:w-1/2"
             height="450"
-            src="https://www.youtube.com/embed/drlIUqRYM-w"
+            src="https://www.youtube.com/embed/6e145BWP7ng"
             title="YouTube video player"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

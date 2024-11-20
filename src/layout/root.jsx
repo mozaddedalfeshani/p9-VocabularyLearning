@@ -32,7 +32,7 @@ export default function Root() {
         <Outlet />
       </div>
       <Footer />
-      <Toaster position="bottom-center" reverseOrder={true} />
+      <Toaster position="top-center" reverseOrder={true} />
     </div>
   );
 }
