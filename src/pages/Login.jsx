@@ -18,8 +18,6 @@ export default function Login() {
   const location = useLocation(); // Get the current location
   const navigate = useNavigate(); // Get the navigate function
 
-  console.log(location);
-
   const clickToLogin = () => {
     setLogin(true);
   };
