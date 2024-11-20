@@ -10,6 +10,7 @@ import Lesson from "../pages/Lesson";
 import PrivateProvider from "./PrivateProvider";
 import MyProfile from "../pages/MyProfile";
 import WrongPage from "../pages/WrongPage"; // Add this import
+import UpdateProfile from "../pages/UpdateProfile"; // Fix import
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,14 @@ const router = createBrowserRouter([
             <div>
               <MyProfile />
             </div>
+          </PrivateProvider>
+        ),
+      },
+      {
+        path: "updateProfile",
+        element: (
+          <PrivateProvider>
+            <UpdateProfile /> {/* Fix component usage */}
           </PrivateProvider>
         ),
       },
