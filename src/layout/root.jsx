@@ -12,11 +12,14 @@ export default function Root() {
   useEffect(() => {
     if (user) {
       toast(`Hello, ${user.displayName}`, {
-        icon: "👏",
         style: {
-          borderRadius: "10px",
-          background: "#333",
-          color: "#fff",
+          border: "1px solid #713200",
+          padding: "16px",
+          color: "#713200",
+        },
+        iconTheme: {
+          primary: "#713200",
+          secondary: "#FFFAEE",
         },
       });
     }
