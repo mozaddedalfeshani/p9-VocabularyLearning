@@ -11,7 +11,7 @@ export default function Root() {
 
   useEffect(() => {
     if (user) {
-      toast(`Hello, ${user.displayName}`, {
+      toast(`${user ? ("Hello", user.displayName) : ""}`, {
         style: {
           border: "1px solid #713200",
           padding: "16px",
@@ -32,7 +32,7 @@ export default function Root() {
         <Outlet />
       </div>
       <Footer />
-      <Toaster position="top-right" reverseOrder={false} />
+      <Toaster position="bottom-center" reverseOrder={true} />
     </div>
   );
 }

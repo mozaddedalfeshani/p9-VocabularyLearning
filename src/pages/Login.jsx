@@ -21,7 +21,6 @@ export default function Login() {
 
   const clickToLogin = () => {
     setLogin(true);
-    navigate(location?.state?.from?.pathname || "/"); // Navigate to the previous page or home page
   };
 
   const clickToSignup = () => {
@@ -46,6 +45,25 @@ export default function Login() {
     }
   };
 
+  const handleSignup = async (e) => {
+    e.preventDefault();
+    if (!signupPasswordError) {
+      await authContext.createAccount(
+        e.target.email.value,
+        e.target.password.value,
+        signupName,
+        signupPhotoUrl
+      );
+      navigate(location?.state?.from?.pathname || "/"); // Navigate to the previous page or home page
+    }
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    await signInUser(e.target.email.value, e.target.password.value);
+    navigate(location?.state?.from?.pathname || "/");
+  };
+
   const handleSignupPasswordChange = (e) => {
     const value = e.target.value;
     setSignupPassword(value);
@@ -58,26 +76,6 @@ export default function Login() {
       setSignupPasswordError("");
     }
   };
-
-  const handleSignup = (e) => {
-    e.preventDefault();
-    if (!signupPasswordError) {
-      authContext.createAccount(
-        e.target.email.value,
-        e.target.password.value,
-        signupName,
-        signupPhotoUrl
-      );
-      navigate(location?.state?.from?.pathname || "/"); // Navigate to the previous page or home page
-    }
-  };
-
-  const handleLogin = (e) => {
-    e.preventDefault();
-    signInUser(e.target.email.value, e.target.password.value);
-    navigate(location?.state?.from?.pathname || "/"); // Navigate to the previous page or home page
-  };
-
   return (
     <div className="mx-auto">
       {!login && (
