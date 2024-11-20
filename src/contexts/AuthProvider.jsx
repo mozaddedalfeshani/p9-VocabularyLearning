@@ -40,28 +40,51 @@ const AuthProvider = ({ children }) => {
     });
   };
 
-  const createAccount = (email, password, displayName, photoURL) => {
-    createUserWithEmailAndPassword(getAuth(app), email, password).then(
-      (userCredential) => {
-        updateUserProfile(displayName, photoURL); // Update user profile with display name and photo URL
-        notify("Account created successfully"); // Notify on successful account creation
-      }
-    );
-  };
+  // const createAccount = (email, password, displayName, photoURL) => {
+  //   createUserWithEmailAndPassword(getAuth(app), email, password).then(
+  //     (userCredential) => {
+  //       updateUserProfile(displayName, photoURL);
+  //       notify("Account created successfully"); // Notify on successful account creation
+  //     }
+  //   );
+  // };
 
-  const signInUser = (email, password) => {
-    if (!email) {
-      return;
-    }
-    signInWithEmailAndPassword(getAuth(app), email, password)
-      .then((result) => {
-        setUser(result.user); // Set the user state with the authenticated user
-        notify("Successfully logged in with email and password"); // Notify on successful email/password login
+  const createAccount = (email, password, displayName, photoURL) => {
+    return createUserWithEmailAndPassword(getAuth(app), email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        return updateProfile(user, { displayName, photoURL }).then(() => {
+          notify("Account created successfully"); // Notify on successful account creation
+          return user; // Return the user object to signal success
+        });
       })
       .catch((error) => {
         const errorMessage = error.message;
-        notify("Error signing in: " + errorMessage); // Notify on wrong credentials
+        notify("Error creating account: " + errorMessage); // Notify on account creation error
+        throw error; // Re-throw the error to let the caller handle it
       });
+  };
+// 
+// 
+
+  const signInUser = (email, password) => {
+    return new Promise((resolve, reject) => {
+      if (!email) {
+        reject("Email is required");
+        return;
+      }
+      signInWithEmailAndPassword(getAuth(app), email, password)
+        .then((result) => {
+          setUser(result.user); // Set the user state with the authenticated user
+          notify("Successfully logged in with email and password"); // Notify on successful email/password login
+          resolve(result.user); // Resolve the promise with the user data
+        })
+        .catch((error) => {
+          const errorMessage = error.message;
+          notify("Error signing in: " + errorMessage); // Notify on wrong credentials
+          reject(errorMessage); // Reject the promise with the error message
+        });
+    });
   };
 
   const signOutUser = () => {

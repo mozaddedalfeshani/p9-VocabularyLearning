@@ -3,6 +3,7 @@ import { useState } from "react";
 import { AuthContext } from "../contexts/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import signinIcon from "../assets/icons/signinIcon.png";
+import toast from "react-hot-toast";
 
 export default function Login() {
   const [login, setLogin] = useState(false); // State to toggle between login and signup
@@ -48,22 +49,37 @@ export default function Login() {
   const handleSignup = async (e) => {
     e.preventDefault();
     if (!signupPasswordError) {
-      await authContext.createAccount(
-        e.target.email.value,
-        e.target.password.value,
-        signupName,
-        signupPhotoUrl
-      );
-      navigate(location?.state?.from?.pathname || "/"); // Navigate to the previous page or home page
+      try {
+        await authContext.createAccount(
+          e.target.email.value,
+          e.target.password.value,
+          signupName,
+          signupPhotoUrl
+        );
+        navigate(location?.state?.from?.pathname || "/"); // Navigate to the previous page or home page
+      } catch (error) {
+        console.error("Signup failed:", error);
+      }
     }
   };
 
+  // const handleLogin = async (e) => {
+  //   e.preventDefault();
+  //   await signInUser(e.target.email.value, e.target.password.value);
+  //   navigate(location?.state?.from?.pathname || "/");
+  // };
+
   const handleLogin = async (e) => {
     e.preventDefault();
-    await signInUser(e.target.email.value, e.target.password.value);
-    navigate(location?.state?.from?.pathname || "/");
+    try {
+      await signInUser(e.target.email.value, e.target.password.value); // Attempt to sign in
+      navigate(location?.state?.from?.pathname || "/"); // Navigate only on success
+    } catch (error) {
+      toast("Login Failed"); // Log the error for debugging
+      // No navigation happens here because the login failed
+    }
   };
-
+  //
   const handleSignupPasswordChange = (e) => {
     const value = e.target.value;
     setSignupPassword(value);
