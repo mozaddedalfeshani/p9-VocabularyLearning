@@ -8,6 +8,7 @@ export default function PasswordReset() {
     const email = e.target.email.value;
     // console.log(email);
     resetPassword(email);
+    window.location.href = "https://mail.google.com";
   };
   return (
     <div className="container mx-auto flex justify-center items-center p-3">

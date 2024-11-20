@@ -15,15 +15,16 @@ export default function UpdateProfile() {
     const auth = getAuth();
     updateProfile(auth.currentUser, {
       displayName: name,
-      photoURL: image
-    }).then(() => {
-      // Profile updated!
-      setUser({ ...user, displayName: name, photoURL: image });
-      navigate("/"); // Navigate to home page
-    }).catch((error) => {
-      // An error occurred
-      console.error("Error updating profile:", error);
-    });
+      photoURL: image,
+    })
+      .then(() => {
+        setUser({ ...user, displayName: name, photoURL: image });
+        navigate("/"); // Navigate to home page
+      })
+      .catch((error) => {
+        // An error occurred
+        console.error("Error updating profile:", error);
+      });
   };
 
   return (
