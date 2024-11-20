@@ -70,15 +70,15 @@ lingo-bingo/
 │   │   │   ├── ImageSlider.jsx
 │   │   │   ├── SuccessSection.jsx
 │   │   │   ├── TestimonialsSection.jsx
-│   │   │   ├── Banner.jsx
-│   │   │   ├── cardShow.jsx
-│   │   │   ├── Footer.jsx
-│   │   │   ├── LetsLearn.jsx
-│   │   │   ├── LoadingUI.jsx
-│   │   │   ├── Modal.jsx
-│   │   │   ├── NavBar.jsx
-│   │   │   ├── VocabularyCard.jsx
-│   │   │   └── VocabularyDetails.jsx
+│   │   ├── Banner.jsx
+│   │   ├── cardShow.jsx
+│   │   ├── Footer.jsx
+│   │   ├── LetsLearn.jsx
+│   │   ├── LoadingUI.jsx
+│   │   ├── Modal.jsx
+│   │   ├── NavBar.jsx
+│   │   ├── VocabularyCard.jsx
+│   │   └── VocabularyDetails.jsx
 │   ├── contexts/          # Context API-related files
 │   │   └── AuthProvider.jsx # Authentication provider for global state
 │   ├── hooks/             # Custom React hooks
