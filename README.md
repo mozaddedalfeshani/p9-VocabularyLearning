@@ -43,53 +43,80 @@ Lingo Bingo is a fun and interactive single-page application designed to help us
 ## **Project Structure**
 
 ```
+
 lingo-bingo/
-├── public/                # Public assets (static files)
-│   ├── images/            # Public images like banners, logos
-│   ├── favicon.ico        # App favicon
-│   └── robots.txt         # Optional for SEO
-├── src/
-│   ├── assets/            # Assets folder for project-specific resources
-│   │   ├── images/        # Images (used in JSX or CSS)
-│   │   └── styles/        # Global styles (CSS/SCSS)
-│   │       ├── globals.css  # Global CSS styles
-│   │       └── variables.css # CSS variables (optional)
-│   ├── components/        # Reusable UI components
-│   │   ├── Header.jsx     # Header component
-│   │   ├── Footer.jsx     # Footer component
-│   │   ├── Navbar.jsx     # Navigation bar component
-│   │   ├── Banner.jsx     # Slider/Banner for Home
-│   │   ├── Modal.jsx      # Reusable modal component (e.g., for "When to say")
-│   │   └── Card.jsx       # Reusable card component (e.g., for lessons)
-│   ├── contexts/          # Context API (state management)
-│   │   ├── AuthContext.jsx # Auth state and provider
-│   │   └── FirebaseConfig.js # Firebase initialization and keys (use `.env`)
-│   ├── data/              # Static data files
-│   │   └── vocabularies.json # JSON file with vocab data
+├── public/                # Public folder for static assets
+│   ├── index.html         # Main HTML file
+│   ├── logo.png           # Logo image
+│   └── vite.svg           # Vite logo
+├── src/                   # Source folder for app components and logic
+│   ├── assets/
+│   ├── icons/              # Icon assets
+│   │   ├── forgetPasswordIcon.png  # Icon for "Forget Password"
+│   │   ├── logoIcon.png            # Logo icon
+│   │   ├── signinIcon.png          # Sign-in icon
+│   │   └── userLogout.png          # Logout icon
+│   ├── images/             # Image assets
+│   │   └── myPhoto.jpg              # Sample photo
+│   ├── sounds/             # Sound assets
+│   │   └── click.mp3                # Click sound effect
+│   └── react.svg           # React SVG file
+|   | 
+│   ├── components/        # Reusable components
+│   │   ├── Buttons/       # Button-related components
+│   │   │   └── LogoutWithImage.jsx # Button for logout with image
+│   │   ├── Home/          # Components specific to the Home page
+│   │   │   ├── AboutSection.jsx
+│   │   │   ├── ImageSlider.jsx
+│   │   │   ├── SuccessSection.jsx
+│   │   │   ├── TestimonialsSection.jsx
+│   │   │   ├── Banner.jsx
+│   │   │   ├── cardShow.jsx
+│   │   │   ├── Footer.jsx
+│   │   │   ├── LetsLearn.jsx
+│   │   │   ├── LoadingUI.jsx
+│   │   │   ├── Modal.jsx
+│   │   │   ├── NavBar.jsx
+│   │   │   ├── VocabularyCard.jsx
+│   │   │   └── VocabularyDetails.jsx
+│   ├── contexts/          # Context API-related files
+│   │   └── AuthProvider.jsx # Authentication provider for global state
 │   ├── hooks/             # Custom React hooks
+│   │   ├── Firebase.Config.js # Firebase configuration
 │   │   └── useAuth.js     # Hook for authentication logic
+│   ├── layout/            # Layout components
+│   │   ├── HomeLayout.jsx # Layout for home page
+│   │   └── root.jsx       # Root layout component
 │   ├── pages/             # Page components
-│   │   ├── Home.jsx       # Home page
-│   │   ├── StartLearning.jsx # "Let's Learn" page
+│   │   ├── AboutUs.jsx    # About Us page
+│   │   ├── ContactUs.jsx  # Contact Us page
 │   │   ├── Lesson.jsx     # Lesson details page
-│   │   ├── Tutorials.jsx  # Tutorials page
-│   │   ├── AboutUs.jsx    # About Us page (optional)
-│   │   ├── Profile.jsx    # User Profile page
-│   │   ├── UpdateProfile.jsx # Update profile page
 │   │   ├── Login.jsx      # Login page
-│   │   ├── Register.jsx   # Registration page
-│   │   └── NotFound.jsx   # 404 Error page
-│   ├── router/            # React Router configuration
-│   │   └── AppRouter.jsx  # Main routing logic
-│   ├── App.jsx            # Main App component
-│   ├── main.jsx           # Vite entry point
-│   └── firebase.js        # Firebase initialization
-├── .env                   # Environment variables for Firebase keys
-├── .gitignore             # Files and directories to ignore in Git
-├── index.html             # Vite root HTML
-├── package.json           # Project metadata and dependencies
-├── README.md              # Project documentation
+│   │   ├── MyProfile.jsx  # Profile page
+│   │   ├── PasswordReset.jsx # Password reset page
+│   │   ├── StartLearning.jsx # Start learning page
+│   │   ├── Tutorials.jsx  # Tutorials page
+│   │   ├── UpdateProfile.jsx # Profile update page
+│   │   └── WrongPage.jsx  # 404 Not Found page
+│   ├── routes/            # Routing logic
+│   │   ├── PrivateProvider.jsx # Protected route handling
+│   │   └── router.jsx     # Main routing logic
+│   ├── App.jsx            # Root application component
+│   ├── App.css            # Global styles
+│   ├── main.jsx           # Entry point for the app
+│   └── config.js          # Additional configuration
+├── .env                   # Environment variables
+├── .firebaserc            # Firebase configuration file
+├── .gitignore             # Git ignore file
+├── eslint.config.js       # ESLint configuration
+├── firebase.json          # Firebase project settings
+├── index.html             # Main HTML file for Vite
+├── package.json           # Project dependencies and metadata
+├── postcss.config.js      # PostCSS configuration
+├── README.md              # Documentation for the project
+├── tailwind.config.js     # Tailwind CSS configuration
 └── vite.config.js         # Vite configuration
+
 ```
 
 ---
