@@ -24,7 +24,7 @@ export default function MyProfile() {
             <h3 className="card-title">{user?.displayName || "User Name"}</h3>
             <p>{user?.email || "user@example.com"}</p>
             <button className="btn btn-danger">
-              <Link to="updateProfile">Update Profile</Link>
+              <Link to="/profileEdit">Update Profile</Link>
             </button>
           </div>
         </div>

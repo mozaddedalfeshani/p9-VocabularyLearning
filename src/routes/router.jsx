@@ -10,8 +10,9 @@ import Lesson from "../pages/Lesson";
 import PrivateProvider from "./PrivateProvider";
 import MyProfile from "../pages/MyProfile";
 import WrongPage from "../pages/WrongPage"; // Add this import
-import UpdateProfile from "../pages/UpdateProfile"; // Fix import
+
 import PasswordReset from "../pages/PasswordReset";
+import UpdateProfile from "../pages/updateProfile";
 
 const router = createBrowserRouter([
   {
@@ -61,10 +62,10 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/updateProfile",
+        path: "/profileEdit",
         element: (
           <PrivateProvider>
-            <UpdateProfile /> {/* Fix component usage */}
+            <UpdateProfile />
           </PrivateProvider>
         ),
       },

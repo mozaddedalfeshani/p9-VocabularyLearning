@@ -11,7 +11,7 @@ export default function Root() {
 
   useEffect(() => {
     if (user) {
-      toast(`${user ? `Hello, ${user.displayName}` : ""}`, {
+      toast(`Welcome, ${user.displayName}`, {
         style: {
           border: "1px solid #713200",
           padding: "16px",
