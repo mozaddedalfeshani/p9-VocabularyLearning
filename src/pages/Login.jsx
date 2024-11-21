@@ -4,6 +4,7 @@ import { AuthContext } from "../contexts/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import signinIcon from "../assets/icons/signinIcon.png";
 import toast from "react-hot-toast";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 export default function Login() {
   const [login, setLogin] = useState(true); // State to toggle between login and signup
@@ -61,21 +62,19 @@ export default function Login() {
     }
   };
 
-  // const handleLogin = async (e) => {
-  //   e.preventDefault();
-  //   await signInUser(e.target.email.value, e.target.password.value);
-  //   navigate(location?.state?.from?.pathname || "/");
-  // };
-
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       await signInUser(e.target.email.value, e.target.password.value); // Attempt to sign in
       navigate(location?.state?.from?.pathname || "/"); // Navigate only on success
     } catch (error) {
-      toast("Login Failed"); // Log the error for debugging
-      // No navigation happens here because the login failed
+      toast("Login Failed");
     }
+  };
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
   //
   const handleSignupPasswordChange = (e) => {
@@ -136,9 +135,12 @@ export default function Login() {
                   required
                 />
               </div>
-              <div className="form-control">
+              {/* <div className="form-control">
                 <label className="label">
                   <span className="label-text">Password</span>
+                  <div>
+                    <FaEye />
+                  </div>
                 </label>
                 <input
                   type="password"
@@ -149,6 +151,32 @@ export default function Login() {
                   onChange={handleSignupPasswordChange}
                   required
                 />
+                {signupPasswordError && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {signupPasswordError}
+                  </p>
+                )}
+              </div> */}
+              <div className="form-control relative">
+                <label className="label">
+                  <span className="label-text">Password</span>
+                </label>
+                <div className="relative">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    placeholder="password"
+                    className="input input-bordered w-full pr-10"
+                    value={signupPassword}
+                    onChange={handleSignupPasswordChange}
+                    required
+                  />
+                  <div
+                    className="absolute inset-y-0 right-3 flex items-center cursor-pointer"
+                    onClick={togglePasswordVisibility}>
+                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                  </div>
+                </div>
                 {signupPasswordError && (
                   <p className="text-red-500 text-xs mt-1">
                     {signupPasswordError}
@@ -196,7 +224,7 @@ export default function Login() {
                   required
                 />
               </div>
-              <div className="form-control">
+              {/* <div className="form-control">
                 <label className="label">
                   <span className="label-text">Password</span>
                 </label>
@@ -209,6 +237,37 @@ export default function Login() {
                   onChange={handlePasswordChange}
                   required
                 />
+                {passwordError && (
+                  <p className="text-red-500 text-xs mt-1">{passwordError}</p>
+                )}
+                <label className="label">
+                  <Link
+                    to="/resetPassword"
+                    className="label-text-alt link link-hover">
+                    Forgot password?
+                  </Link>
+                </label>
+              </div> */}
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Password</span>
+                </label>
+                <div className="relative">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    placeholder="password"
+                    className="input input-bordered w-full pr-10"
+                    value={password}
+                    onChange={handlePasswordChange}
+                    required
+                  />
+                  <div
+                    className="absolute inset-y-0 right-3 flex items-center cursor-pointer"
+                    onClick={togglePasswordVisibility}>
+                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                  </div>
+                </div>
                 {passwordError && (
                   <p className="text-red-500 text-xs mt-1">{passwordError}</p>
                 )}
